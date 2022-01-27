@@ -13,9 +13,12 @@ namespace Mission4_MasonPerry.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private MovieContext _context { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, MovieContext lol)
         {
             _logger = logger;
+            _context = lol;
         }
 
         public IActionResult Index()
@@ -26,6 +29,20 @@ namespace Mission4_MasonPerry.Controllers
         public IActionResult Podcasts()
         {
             return View();
+        }
+        
+        [HttpGet]
+        public IActionResult addMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult addMovie(Movies m)
+        {
+            _context.Add(m);
+            _context.SaveChanges();
+            return View("Confirmation", m);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

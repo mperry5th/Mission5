@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Mission4_MasonPerry.Models.Movies
+
+<h1>Add a Movie to Joel's Database</h1>
+<br />
+<form method="post">
+    <fieldset>
+        <legend>Insert Record: </legend>
+        <label asp-for="Category">Category: </label><br />
+        <input asp-for="Category" /><br /><br />
+
+        <label asp-for="Title">Title: </label><br />
+        <input asp-for="Title" /><br /><br />
+
+        <label asp-for="Year">Year: </label><br />
+        <input asp-for="Year" /><br /><br />
+
+        <label asp-for="Director">Director: </label><br />
+        <input asp-for="Director" /><br /><br />
+
+        <label asp-for="Rating">Rating: </label><br />
+        <select asp-for="Rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select><br /><br />
+
+        <label asp-for="Edited">Edited: </label><br />
+        <select asp-for="Edited">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br /><br />
+
+        <label asp-for="Lent">Lent to: </label><br />
+        <input asp-for="Lent" /><br /><br />
+
+        <label asp-for="Notes">Additional Notes: </label><br />
+        <input asp-for="Notes" /><br /><br />
+
+        <button type="submit">Add Movie</button>
+    </fieldset>
+</form>
