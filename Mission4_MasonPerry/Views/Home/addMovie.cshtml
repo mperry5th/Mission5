@@ -9,10 +9,19 @@
 <h1>Add a Movie to Joel's Database</h1>
 <br />
 <form method="post">
+
+    <div asp-validation-summary="All"></div>
+
     <fieldset>
         <legend>Insert Record: </legend>
-        <label asp-for="Category">Category: </label><br />
-        <input asp-for="Category" /><br /><br />
+        <label asp-for="CategoryId">Category: </label><br />
+               
+        <select asp-for="Category">
+            @foreach (var c in ViewBag.Category)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select><br />
 
         <label asp-for="Title">Title: </label><br />
         <input asp-for="Title" /><br /><br />

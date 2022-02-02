@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Mission5.Models;
 
 namespace Mission4_MasonPerry.Models
 {
@@ -15,14 +16,22 @@ namespace Mission4_MasonPerry.Models
         }
 
         public DbSet<Movies> movies { get; set; }
+        public DbSet<Category> categories {get; set;}
 
-        protected override void OnModelCreating(ModelBuilder mb)
+protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.Entity<Category>().HasData(
+            new Category { CategoryId = 1, CategoryName = "Action/Adventure" },
+            new Category { CategoryId = 2, CategoryName = "Ancient Near Eastern Studies: Greek New Testament" },
+            new Category { CategoryId = 3, CategoryName = "Acturarial Science" },
+            new Category { CategoryId = 4, CategoryName = "Undeclared" }
+             );
+
             mb.Entity<Movies>().HasData(
                     new Movies
                     {
                         MovieId = 1,
-                        Category = "Action/Adventure",
+                        CategoryId = 1,
                         Title = "Avengers: End Game",
                         Year = 2019,
                         Director = "Russo Brothers",
@@ -35,7 +44,7 @@ namespace Mission4_MasonPerry.Models
                     new Movies
                     {
                         MovieId = 2,
-                        Category = "Action/Adventure",
+                        CategoryId = 1,
                         Title = "Interstellar",
                         Year = 2014,
                         Director = "Christopher Nolan",
@@ -48,7 +57,7 @@ namespace Mission4_MasonPerry.Models
                     new Movies
                     {
                         MovieId = 3,
-                        Category = "Action/Adventure",
+                        CategoryId = 1,
                         Title = "Lord of the Rings: The Return of the King ",
                         Year = 2003,
                         Director = "Peter Jackson",

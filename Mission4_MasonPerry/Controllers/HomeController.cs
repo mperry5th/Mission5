@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission4_MasonPerry.Models;
 
@@ -30,19 +31,69 @@ namespace Mission4_MasonPerry.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult ViewMovies()
+        {
+            ViewBag.Category = _context.categories.ToList();
+
+            var movies = _context.movies
+                .Include(x => x.Category)
+                .ToList();
+            return View(movies);
+        }
         
         [HttpGet]
         public IActionResult addMovie()
         {
+            ViewBag.Category = _context.categories.ToList();
             return View();
         }
 
         [HttpPost]
         public IActionResult addMovie(Movies m)
         {
-            _context.Add(m);
+            if (ModelState.IsValid)
+            { 
+                _context.Add(m);
+                _context.SaveChanges();
+                return View("Confirmation", m);
+            }
+            else
+            {
+                ViewBag.Category = _context.categories.ToList();
+                return View(m);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int movieid)
+        {
+            ViewBag.Category = _context.categories.ToList();
+            var movie = _context.movies.Single(x => x.MovieId == movieid);
+            return View("addMovie", movie);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movies m)
+        {
+            _context.Update(m);
             _context.SaveChanges();
-            return View("Confirmation", m);
+            return RedirectToAction("ViewMovies");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int movieid)
+        {
+            var movie = _context.movies.Single(x => x.MovieId == movieid);
+            return View(movie);
+        }
+        [HttpPost]
+        public IActionResult Delete(Movies m)
+        {
+            _context.movies.Remove(m);
+            _context.SaveChanges();
+            return RedirectToAction("ViewMovies");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

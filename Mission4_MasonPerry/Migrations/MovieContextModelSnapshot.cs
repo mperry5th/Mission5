@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mission4_MasonPerry.Models;
 
-namespace Mission4_MasonPerry.Migrations
+namespace Mission5.Migrations
 {
     [DbContext(typeof(MovieContext))]
     partial class MovieContextModelSnapshot : ModelSnapshot
@@ -21,9 +21,8 @@ namespace Mission4_MasonPerry.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -36,7 +35,8 @@ namespace Mission4_MasonPerry.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(25);
 
                     b.Property<string>("Rating")
                         .IsRequired()
@@ -51,13 +51,15 @@ namespace Mission4_MasonPerry.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("movies");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
-                            Category = "Action/Adventure",
+                            CategoryId = 1,
                             Director = "Russo Brothers",
                             Edited = false,
                             Notes = "A classic in 2019!",
@@ -68,7 +70,7 @@ namespace Mission4_MasonPerry.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Action/Adventure",
+                            CategoryId = 1,
                             Director = "Christopher Nolan",
                             Edited = false,
                             Notes = "Best movie EVER.",
@@ -79,7 +81,7 @@ namespace Mission4_MasonPerry.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Action/Adventure",
+                            CategoryId = 1,
                             Director = "Peter Jackson",
                             Edited = false,
                             Notes = "One of the all-time classics.",
@@ -87,6 +89,51 @@ namespace Mission4_MasonPerry.Migrations
                             Title = "Lord of the Rings: The Return of the King ",
                             Year = 2003
                         });
+                });
+
+            modelBuilder.Entity("Mission5.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Action/Adventure"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Ancient Near Eastern Studies: Greek New Testament"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Acturarial Science"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Undeclared"
+                        });
+                });
+
+            modelBuilder.Entity("Mission4_MasonPerry.Models.Movies", b =>
+                {
+                    b.HasOne("Mission5.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
