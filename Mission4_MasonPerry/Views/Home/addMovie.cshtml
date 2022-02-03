@@ -16,7 +16,7 @@
         <legend>Insert Record: </legend>
         <label asp-for="CategoryId">Category: </label><br />
                
-        <select asp-for="Category">
+        <select asp-for="CategoryId">
             @foreach (var c in ViewBag.Category)
             {
                 <option value="@c.CategoryId">@c.CategoryName</option>
