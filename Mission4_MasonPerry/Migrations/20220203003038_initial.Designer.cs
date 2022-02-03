@@ -8,7 +8,7 @@ using Mission4_MasonPerry.Models;
 namespace Mission5.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20220202174404_initial")]
+    [Migration("20220203003038_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,17 +115,17 @@ namespace Mission5.Migrations
                         new
                         {
                             CategoryId = 2,
-                            CategoryName = "Ancient Near Eastern Studies: Greek New Testament"
+                            CategoryName = "Fantasy"
                         },
                         new
                         {
                             CategoryId = 3,
-                            CategoryName = "Acturarial Science"
+                            CategoryName = "Rom-Com"
                         },
                         new
                         {
                             CategoryId = 4,
-                            CategoryName = "Undeclared"
+                            CategoryName = "Horror/Thriller"
                         });
                 });
 

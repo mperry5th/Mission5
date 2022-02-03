@@ -75,9 +75,9 @@ namespace Mission4_MasonPerry.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Movies m)
+        public IActionResult Edit(Movies mov)
         {
-            _context.Update(m);
+            _context.Update(mov);
             _context.SaveChanges();
             return RedirectToAction("ViewMovies");
         }

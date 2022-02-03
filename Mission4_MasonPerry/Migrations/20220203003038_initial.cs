@@ -53,17 +53,17 @@ namespace Mission5.Migrations
             migrationBuilder.InsertData(
                 table: "categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 2, "Ancient Near Eastern Studies: Greek New Testament" });
+                values: new object[] { 2, "Fantasy" });
 
             migrationBuilder.InsertData(
                 table: "categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 3, "Acturarial Science" });
+                values: new object[] { 3, "Rom-Com" });
 
             migrationBuilder.InsertData(
                 table: "categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 4, "Undeclared" });
+                values: new object[] { 4, "Horror/Thriller" });
 
             migrationBuilder.InsertData(
                 table: "movies",

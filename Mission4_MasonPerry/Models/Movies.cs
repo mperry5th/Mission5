@@ -26,7 +26,6 @@ namespace Mission4_MasonPerry.Models
         public string Notes { get; set; }
 
         public int CategoryId { get; set; }
-        [Required]
         public Category Category { get; set; }
     }
 }

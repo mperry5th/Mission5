@@ -113,17 +113,17 @@ namespace Mission5.Migrations
                         new
                         {
                             CategoryId = 2,
-                            CategoryName = "Ancient Near Eastern Studies: Greek New Testament"
+                            CategoryName = "Fantasy"
                         },
                         new
                         {
                             CategoryId = 3,
-                            CategoryName = "Acturarial Science"
+                            CategoryName = "Rom-Com"
                         },
                         new
                         {
                             CategoryId = 4,
-                            CategoryName = "Undeclared"
+                            CategoryName = "Horror/Thriller"
                         });
                 });
 

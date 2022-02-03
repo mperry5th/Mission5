@@ -22,9 +22,9 @@ protected override void OnModelCreating(ModelBuilder mb)
         {
             mb.Entity<Category>().HasData(
             new Category { CategoryId = 1, CategoryName = "Action/Adventure" },
-            new Category { CategoryId = 2, CategoryName = "Ancient Near Eastern Studies: Greek New Testament" },
-            new Category { CategoryId = 3, CategoryName = "Acturarial Science" },
-            new Category { CategoryId = 4, CategoryName = "Undeclared" }
+            new Category { CategoryId = 2, CategoryName = "Fantasy" },
+            new Category { CategoryId = 3, CategoryName = "Rom-Com" },
+            new Category { CategoryId = 4, CategoryName = "Horror/Thriller" }
              );
 
             mb.Entity<Movies>().HasData(
